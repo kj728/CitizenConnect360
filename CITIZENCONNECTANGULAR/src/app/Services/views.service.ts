@@ -16,8 +16,7 @@ export class ViewsService {
 
 
   addView(newView: addView): Observable<AddViewResponse> {
-
-    return this.http.post<AddViewResponse>(this.BaseURL, newView, {
+    return this.http.post<AddViewResponse>(this.BaseURL+"addview", newView, {
       headers: new HttpHeaders({
         token: this.retrievedToken
       })
@@ -39,9 +38,5 @@ export class ViewsService {
       })
     })
   }
-
-  
-
-
 
 }

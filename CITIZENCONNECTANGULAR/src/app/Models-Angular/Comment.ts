@@ -5,16 +5,14 @@ export interface IComments{
     comment: string,
     viewid: string,
     createdby: string,
+    creatername: string,
     createdat: string,
     isDeleted: number
 }
 
 export interface addComment{
     comment: string,
-    createdby: string,
     viewid:string
-    createdat: string,
-    isDelted: number
 }
 
 export interface AddCommentResponse{

@@ -10,13 +10,14 @@ CREATE OR ALTER PROCEDURE addIncident(
     @multimedia VARCHAR(255),
     @incidentsummary VARCHAR(1024),
     @createdby VARCHAR(255),
-    @createdat DATE
+    @creatername VARCHAR(255),
+    @createdat VARCHAR(255)
 )
 AS
 BEGIN
     INSERT INTO incidents
-        (id, title, description, location, multimedia, incidentsummary, createdby, createdat)
+        (id, title, description, location, multimedia, incidentsummary, createdby, creatername, createdat)
     VALUES
-        (@id, @title, @description, @location, @multimedia, @incidentsummary, @createdby, @createdat)
+        (@id, @title, @description, @location, @multimedia, @incidentsummary, @createdby,@creatername, @createdat)
 
 END

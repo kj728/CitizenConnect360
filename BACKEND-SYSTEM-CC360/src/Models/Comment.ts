@@ -6,6 +6,7 @@ export interface IComments{
     comment: string,
     viewid: string,
     createdby: string,
+    creatername: string,
     createdat: string,
     isDeleted: number
 }

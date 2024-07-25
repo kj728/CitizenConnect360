@@ -65,7 +65,7 @@
     width: 80%;
 
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto;
     background-color: #d60cc500;
     justify-content: center;
     /* column-gap: 10px;
@@ -76,7 +76,7 @@
 }
 
 .poll-card {
-    width: 200px;
+    width: auto;
     min-height: 200px;
     background-color: #007BFF;
     display: flex;
@@ -86,6 +86,7 @@
     border-radius: 10px;
     gap: 10px;
     padding: 10px;
+    text-align: center;
 
 }
 

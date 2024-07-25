@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { PollActions } from '../State/Actions/poll.action';
+import { AppState } from '../State';
 
 @Component({
   selector: 'app-add-poll',
@@ -11,7 +14,7 @@ import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Va
 })
 export class AddPollComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private store: Store<AppState>) {
 
   }
   addPollForm!: FormGroup
@@ -19,7 +22,7 @@ export class AddPollComponent implements OnInit {
   ngOnInit(): void {
     this.addPollForm = this.fb.group({
       question: this.fb.control(null, Validators.required),
-      responses: this.fb.array([
+      choices: this.fb.array([
         this.fb.control(null, Validators.required)
       ]),
       startdate: this.fb.control(null, Validators.required),
@@ -28,23 +31,22 @@ export class AddPollComponent implements OnInit {
 
   }
 
-  onSubmit() {
-    console.log("Add Poll Form Submitted");
-  
-    console.log(this.addPollForm.value);
-    this.addPollForm.reset();
-
-  }
-
   addResponse() {
-    (<FormArray>this.addPollForm.get('responses')).push(this.fb.control(null, Validators.required));
+    (<FormArray>this.addPollForm.get('choices')).push(this.fb.control(null, Validators.required));
   }
 
   getControls() {
-    return (<FormArray>this.addPollForm.get('responses')).controls;
+    return (<FormArray>this.addPollForm.get('choices')).controls;
 
   }
 
+  onSubmit() {
+    console.log("Add Poll Form Submitted");
+    console.log(this.addPollForm.value);
 
+    this.store.dispatch(PollActions.addPoll({newPoll: this.addPollForm.value}))
+    this.addPollForm.reset();
+
+  }
 
 }

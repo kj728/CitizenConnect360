@@ -13,7 +13,9 @@ export const addView = async (req: ViewRequest, res: Response) => {
     try {
         const createdby = req.info?.sub;
         const role = req.info?.role
-        console.log(role)
+        const creatername = req.info?.username
+
+
 
         const id = uid()
 
@@ -24,18 +26,39 @@ export const addView = async (req: ViewRequest, res: Response) => {
 
         const { title, description } = req.body;
 
-        const currentDate = new Date().toISOString().slice(0, 0);
-        console.log(currentDate);
 
-        //add the view
-        if (createdby && role === "Citizen") {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        const day = now.getDate();
+        let hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
 
-            await dbInstance.exec("addView", { id, title, description, viewsummary: "NO_SUMMARRY", createdby, createdat: currentDate });
+
+        // Determine AM or PM
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+
+        // Convert hours from 24-hour format to 12-hour format
+        hours = hours % 12;
+        hours = hours ? hours : 12; // The hour '0' should be '12'
+
+        // Helper function to add leading zero if needed
+        const addLeadingZero = (num: number): string => (num < 10 ? `0${num}` : String(num));
+
+        const formattedDateTime = `${year}-${month}-${day} ${addLeadingZero(hours)}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)} ${ampm}`;
+        console.log(formattedDateTime);
+
+
+
+        // //add the view
+        if (createdby && creatername && role === "Citizen") {
+            await dbInstance.exec("addView", { id, title, description, viewsummary: "NO_SUMMARY", createdby, creatername, createdat: formattedDateTime });
             return res.status(200).json({ message: "View created successfully" });
-
         }
 
-        return res.status(400).json({ message: "You are not authorized" })
+        // return res.status(400).json({ message: "You are not authorized" })
+
 
 
     } catch (error) {
@@ -90,9 +113,6 @@ export const getSpecificViewById = async (req: Request<{ id: string }>, res: Res
 
         const view = (await dbInstance.exec("getSpecificViewById", { id })).recordset[0] as IView;
         const comments = (await dbInstance.exec("getAllComments", {})).recordset as IComments[];
-
-
-
 
         if (view && view.id) {
 

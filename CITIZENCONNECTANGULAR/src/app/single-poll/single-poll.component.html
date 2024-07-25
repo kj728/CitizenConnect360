@@ -1,48 +1,45 @@
 <div class="wrapper">
     <div class="contents">
-        <div class="vote-card">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur est distinctio impedit a
-                providentne.</p>
 
-            <label for=""><input type="radio" name="options" id=""> Option1</label>
-            <label for=""><input type="radio" name="options" id=""> Option2</label>
-            <label for=""><input type="radio" name="options" id=""> Option3</label>
-            <div class="vote-action">
-                <input type="button" value="Vote">
-            </div>
+
+
+        <div class="vote-card" *ngIf="retrievedPoll">
+
+            <form action="" [formGroup]="addVoteForm" (ngSubmit)="onSubmit()">
+
+
+                <p>
+                    {{retrievedPoll.poll.question}}
+                </p>
+
+
+                <div class="choices" *ngFor="let choice of retrievedPoll.choicesArray; let i = index">
+
+                    <label for="">
+                        <input type="radio"  formControlName="choice" id="" value="{{choice.id}}"> {{choice.choicetext}}
+                    </label>
+
+                </div>
+
+
+                <div class="vote-action">
+                    <input type="submit" value="Vote" [disabled]="addVoteForm.invalid">
+                </div>
+
+            </form>
 
         </div>
 
-        <div class="result-card">
+        <div class="result-card" *ngIf="retrievedPoll">
             <h3>Results</h3>
-
-            <div class="result-record">
-                <label for="">Option1: {{ percentage1}}%</label>
+            <div class="result-record" *ngFor="let choice of retrievedPoll.choicesArray; let i = index">
+                <label for="">{{choice.choicetext}}: {{ choice.votecount }} Vote(s)</label>
                 <div class="progress-container">
-                    <div class="progress-bar" [style.width.%]="percentage1">
-                        {{ percentage1 }}%
+                    <div class="progress-bar" [style.width.%]="calculatePercentage(choice)">
+                        {{ calculatePercentage(choice) | number: '1.2-2' }}%
                     </div>
                 </div>
             </div>
-
-            <div class="result-record">
-                <label for="">Option2: {{ percentage2 }}% </label>
-                <div class="progress-container">
-                    <div class="progress-bar" [style.width.%]="percentage2">
-                        {{ percentage2 }}%
-                    </div>
-                </div>
-            </div>
-
-            <div class="result-record">
-                <label for="">Option3: {{ percentage3 }}% lorem</label>
-                <div class="progress-container">
-                    <div class="progress-bar" [style.width.%]="percentage3">
-                        {{ percentage3 }}%
-                    </div>
-                </div>
-            </div>
-
 
         </div>
     </div>

@@ -53,6 +53,10 @@
     border-radius: 10px;
     gap: 10px;
 }
+.vote-card form{
+    width: 100%;
+    background-color: #70eb0c00;
+}
 
 .vote-card input[type="button"],
 .vote-card p,
@@ -61,7 +65,7 @@
     font-family: 'Lato';
 }
 
-.vote-card input[type="button"],
+.vote-card input[type="submit"],
 .container [type="submit"] {
     padding: 10px 30px;
     border-radius: 20px;

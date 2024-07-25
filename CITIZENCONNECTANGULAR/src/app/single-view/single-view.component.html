@@ -1,33 +1,31 @@
 <div class="wrapper">
     <div class="contents">
         <div class="container">
-            <div class="view-card">
-                <h3>Power Outages</h3>
+            <div class="view-card" *ngIf="retrievedView">
+                <h3>{{retrievedView.view.title}}</h3>
 
-                <div class="view-data">
-                    <p>By: Jane Wambui</p>
-                    <p>13/7/2024</p>
-                    <p>9:34 AM</p>
+                <div class="view-data" >
+                    <p>By: {{retrievedView.view.creatername}}</p>
+                    <p>{{retrievedView.view.createdat}}</p>
+                  
                 </div>
                 <p>
-                    Habari gani?  The recent power outages have been very disruptive, especially for businesses.  Has the electricity company explained the cause of the outages and what they are doing to prevent them in the future?
+                    {{retrievedView.view.description}}
                 </p>
-                <p>View Summary:</p>
-                <p>200 Participants</p>
+                <p *ngIf="retrievedView.view.viewsummary !== 'NO_SUMMARY'">View Summary:{{retrievedView.view.viewsummary}}</p>
+                <p>Comments: {{retrievedView.commentsArray.length}}</p>
             </div>
 
 
-            <div class="view-comments">
+            <div class="view-comments" *ngIf="retrievedView">
                 <h3>Comments </h3>
 
-              
-
-                <div class="comment" *ngFor="let comment of comments">
-                    <h4> {{comment.author}} </h4>
-                    <p> {{comment.content}}  </p>
+                <div class="comment" *ngFor="let comment of retrievedView.commentsArray">
+                    <h4> {{comment.creatername}} </h4>
+                    <p> {{comment.comment}}  </p>
                     <div class="comment-data">
-                        <p> {{comment.date}}</p>
-                        <p>{{comment.time}}</p>
+                        <p> {{comment.createdat}}</p>
+                        <!-- <p>{{comment.time}}</p> -->
                     </div>
                 </div>
 

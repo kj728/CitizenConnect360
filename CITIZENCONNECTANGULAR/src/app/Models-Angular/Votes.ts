@@ -10,8 +10,7 @@ export interface IVote {
 export interface addVote {
     pollid: string,
     choiceid: string,
-    voterid: string,
-    isDeleted: number
+ 
 }
 
 

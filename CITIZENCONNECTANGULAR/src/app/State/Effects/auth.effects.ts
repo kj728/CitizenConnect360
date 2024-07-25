@@ -8,8 +8,7 @@ import { Router } from "@angular/router";
 
 @Injectable()
 export class AuthEffects {
-    constructor(private action$: Actions,
-        private authServ: AuthenticationService, private router: Router) { }
+    constructor(private action$: Actions, private authServ: AuthenticationService, private router: Router) { }
 
 
     registerUser$ = createEffect(() => {
@@ -38,9 +37,22 @@ export class AuthEffects {
                     // navigate to home page after sign-in
 
                     setTimeout(() => {
-                        this.router.navigate(['']).then(() => {
-                            window.location.reload();
-                        });
+
+                        if (loginResponse.payload.role == "Admin") {
+                            this.router.navigate(['/admin']).then(() => {
+                                window.location.reload();
+                            });
+
+                        } else {
+
+                            this.router.navigate(['']).then(() => {
+                                window.location.reload();
+                            });
+
+                        }
+
+
+
                     }, 1000)
 
                     return AuthActions.loginSuccess({ response: loginResponse });
@@ -73,20 +85,20 @@ export class AuthEffects {
     updateUser$ = createEffect(() => {
         return this.action$.pipe(
             ofType(AuthActions.updateUser),
-            mergeMap(({ updatedUser, id })=> this.authServ.updateUser( updatedUser, id).pipe(
+            mergeMap(({ updatedUser, id }) => this.authServ.updateUser(updatedUser, id).pipe(
                 map(response => AuthActions.updateUserSuccess({ response: response })),
                 catchError(error => of(AuthActions.updateUserFailure({ message: error })))
             ))
         )
     })
 
-    approveOffical$=createEffect(() => {
+    approveOffical$ = createEffect(() => {
         return this.action$.pipe(
             ofType(AuthActions.approveOffical),
-            mergeMap(({id })=> this.authServ.approveOfficial(id).pipe(
-                map(response =>{
+            mergeMap(({ id }) => this.authServ.approveOfficial(id).pipe(
+                map(response => {
                     setTimeout(() => {
-                            window.location.reload();
+                        window.location.reload();
                     }, 1000)
                     return AuthActions.approveOfficalSuccess({ response: response });
                 }),
@@ -100,9 +112,9 @@ export class AuthEffects {
         return this.action$.pipe(
             ofType(AuthActions.deleteUser),
             mergeMap(({ id }) => this.authServ.deleteUser(id).pipe(
-                map(response =>{
+                map(response => {
                     setTimeout(() => {
-                            window.location.reload();
+                        window.location.reload();
                     }, 1000)
                     return AuthActions.deleteUserSuccess({ response: response });
                 }),

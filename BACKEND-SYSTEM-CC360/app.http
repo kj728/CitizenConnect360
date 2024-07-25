@@ -99,7 +99,7 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjM2Y4MWE0OS1kOTJmLTQzNzEtY
 
 ########
 POST http://localhost:1000/polls/addpoll
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MjVjZjZmMC1lMGM0LTQ1MDItOWExOS0xYjgwMjRiZTExZjciLCJ1c2VybmFtZSI6ImxpbGlhbl9kb2UiLCJyb2xlIjoiR292ZXJubWVudCBPZmZpY2lhbCIsImlhdCI6MTcyMTMxOTc1MSwiZXhwIjoxNzIxNTc4OTUxfQ.7hkfiOmRxkvNUCkBwEe_HpjYz4V_9PEkR4EPrT00anA
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjM2Y4MWE0OS1kOTJmLTQzNzEtYmVmMi01MzgxYzM1ZTUxNTAiLCJ1c2VybmFtZSI6IkppbW15Iiwicm9sZSI6IkNpdGl6ZW4iLCJpYXQiOjE3MjE4OTk0MjcsImV4cCI6MTcyMjE1ODYyN30.tE25k-xI3lcxGGJa2iUg0mneyvplvPGoz1ffRCudDik
 Content-Type: application/json
 
 {
@@ -107,7 +107,7 @@ Content-Type: application/json
     "startdate":"7/18/2024",
     "enddate":"7/25/2024",
     "choices": ["Green", "Blue","Yellow"]
-}1
+}
 
 #####
 POST  http://localhost:1000/polls/addvote
@@ -139,7 +139,7 @@ GET   http://localhost:1000/polls/9a644348-1733-400c-b457-d2f697fcad7c
 # VIEWS REQUESTS START HERE
 
 POST http://localhost:1000/views/addview
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYTc5NDkwYS0wMWVkLTRmZTAtYmYzNy0wZWNiNGFkODlhNmEiLCJ1c2VybmFtZSI6IkpvaG5fZG9lIiwicm9sZSI6IkNpdGl6ZW4iLCJpYXQiOjE3MjEzOTQ2NjgsImV4cCI6MTcyMTY1Mzg2OH0.9_M2UEuWoQQxXRqsMup0rIQEmrBVoYXA-tiS4C8MxFQ
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjM2Y4MWE0OS1kOTJmLTQzNzEtYmVmMi01MzgxYzM1ZTUxNTAiLCJ1c2VybmFtZSI6IkppbW15Iiwicm9sZSI6IkNpdGl6ZW4iLCJpYXQiOjE3MjE4Mzc3NzUsImV4cCI6MTcyMjA5Njk3NX0.9vjKGAl19sov1gcLhalgv0tzMZnMuXgcX7hJc1Z10gU
 Content-Type: application/json
 
 {
@@ -156,13 +156,13 @@ GET  http://localhost:1000/views/
 
 #####
 #GET A SINGLE VIEW
-GET http://localhost:1000/views/608b7fce-0db4-4058-b3f6-a70ba56b21cd
+GET http://localhost:1000/views/014f81e9-9f44-40f8-bec6-fb16f0b2e8d0
 
 
 #####
 #UPDATE A VIEW
-PATCH  http://localhost:1000/views/608b7fce-0db4-4058-b3f6-a70ba56b21cd
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYTc5NDkwYS0wMWVkLTRmZTAtYmYzNy0wZWNiNGFkODlhNmEiLCJ1c2VybmFtZSI6IkpvaG5fZG9lIiwicm9sZSI6IkNpdGl6ZW4iLCJpYXQiOjE3MjE0NDQ2NDksImV4cCI6MTcyMTcwMzg0OX0.PDyRnthoafMBbCTot_DrMLyI0UklDyGXCfRyFfg5a4M
+PATCH  http://localhost:1000/views/7801965d-2ec5-4055-a46b-446ae48e81e2
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjM2Y4MWE0OS1kOTJmLTQzNzEtYmVmMi01MzgxYzM1ZTUxNTAiLCJ1c2VybmFtZSI6IkppbW15Iiwicm9sZSI6IkNpdGl6ZW4iLCJpYXQiOjE3MjE4Mzc3NzUsImV4cCI6MTcyMjA5Njk3NX0.9vjKGAl19sov1gcLhalgv0tzMZnMuXgcX7hJc1Z10gU
 Content-Type: application/json
 
 {
@@ -229,12 +229,12 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYTc5NDkwYS0wMWVkLTRmZTAtY
 #COMENT REQUESTS START HERE
 #ADD COMMENT
 POST  http://localhost:1000/comments
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwYTc5NDkwYS0wMWVkLTRmZTAtYmYzNy0wZWNiNGFkODlhNmEiLCJ1c2VybmFtZSI6IkpvaG5fZG9lIiwicm9sZSI6IkNpdGl6ZW4iLCJpYXQiOjE3MjE0NDQ2NDksImV4cCI6MTcyMTcwMzg0OX0.PDyRnthoafMBbCTot_DrMLyI0UklDyGXCfRyFfg5a4M
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjM2Y4MWE0OS1kOTJmLTQzNzEtYmVmMi01MzgxYzM1ZTUxNTAiLCJ1c2VybmFtZSI6IkppbW15Iiwicm9sZSI6IkNpdGl6ZW4iLCJpYXQiOjE3MjE4Mzc3NzUsImV4cCI6MTcyMjA5Njk3NX0.9vjKGAl19sov1gcLhalgv0tzMZnMuXgcX7hJc1Z10gU
 Content-Type: application/json
 
 {
-    "comment": "This is my third comment",
-    "viewid": "63abe622-3b60-46ed-8700-4ff01fc9e1dd"
+    "comment": "I agree we need to do something about the state of healthcare in our country",
+    "viewid": "dce0d167-8217-4b69-a274-c50c8311fd67"
 }
 
 

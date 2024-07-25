@@ -6,22 +6,22 @@
 
 
                 <h2>Add Poll</h2>
-                <label for="search">Poll Title/Question</label>
+                <label for="search">Poll Question</label>
                 <input type="text" id="" name="" placeholder="Enter Poll Question" formControlName="question">
                 <div class="helper-text"
                     *ngIf="addPollForm.get('question')?.touched && !addPollForm.get('question')?.valid">
                     <p *ngIf="addPollForm.get('question')?.hasError('required')"><i>Question is required</i></p>
                 </div>
 
-                <label for="search">Responses</label>
+                <label for="search">Choices</label>
 
                 <div class="add-response">
-                    <div formArrayName="responses" class="single-response">
+                    <div formArrayName="choices" class="single-response">
                         <div *ngFor="let response of getControls() ; let i = index">
-                            <input type="text" id="" name="" placeholder="Enter Response" formControlName="{{i}}">
+                            <input type="text" id="" name="" placeholder="Enter Choice" formControlName="{{i}}">
                         </div>
                     </div>
-                    <input type="button" value="Add Response" (click)="addResponse()">
+                    <input type="button" value="Add Choice" (click)="addResponse()">
                 </div>
 
                 <label for="search">Start Date</label>

@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store"
-import { AuthInterface } from "../Reducers/authReducer"
+import { AuthInterface } from "../Reducers/auth.reducer"
 
 const authSelectorFeature = createFeatureSelector<AuthInterface>('authR')
 

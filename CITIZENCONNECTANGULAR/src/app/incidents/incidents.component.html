@@ -6,38 +6,23 @@
         </div>
 
 
-        <div class="display-incidents">
-            <div class="incident-card">
+        <div class="display-incidents" *ngIf="allIncidents">
+            <div class="incident-card" *ngFor="let incident of allIncidents; let i = index">
                 <div class="image">
-                    <img [src]="imagePath" alt="">
+                    <img [src]="incident.multimedia" alt="">
                 </div>
                 <div class="text-content">
-                    <h3>Incident Title</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing eli?</p>
-                    <p>Summary: </p>
-                    <p>Date: 2022-01-01</p>
-                    <p>Location: City, State</p>
-                    <p>Reporter: John Doe</p>
-                    <p>Contact: john&#64;gmail.com</p>
+                    <h3>{{incident.title}}</h3>
+                    <p>{{incident.description}}</p>
+                    <!-- <p>Summary: {{incident.incidentsummarry}} </p> -->
+                    <p>Date: {{incident.createdat}}</p>
+                    <p>Location: {{incident.location}}</p>
+                    <p>Reporter: {{incident.creatername}}</p>
+                    <!-- <p>Contact: {{incident.}}</p> -->
                 </div>
 
             </div>
 
-            <div class="incident-card">
-                <div class="image">
-                    <img [src]="imagePath" alt="">
-                </div>
-                <div class="text-content">
-                    <h3>Incident Title</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing eli?</p>
-                    <p>Summary: </p>
-                    <p>Date: 2022-01-01</p>
-                    <p>Location: City, State</p>
-                    <p>Reporter: John Doe</p>
-                    <p>Contact: john&#64;gmail.com</p>
-                </div>
-
-            </div>
         </div>
 
 

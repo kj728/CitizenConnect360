@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink, RouterModule } from '@angular/router';
+import { AppState } from '../State';
+import { Store } from '@ngrx/store';
+import { ViewActions } from '../State/Actions/views.action';
 
 @Component({
   selector: 'app-add-view',
@@ -14,7 +17,7 @@ export class AddViewComponent implements OnInit {
 
   addViewForm!: FormGroup
 
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder,private store: Store<AppState>) {
 
   }
 
@@ -29,6 +32,7 @@ export class AddViewComponent implements OnInit {
   onSubmit(){
     console.log("Add View Form Submited")
     console.log(this.addViewForm.value)
-
+    this.store.dispatch(ViewActions.addView({newView: this.addViewForm.value}))
+    this.addViewForm.reset();
   }
 }

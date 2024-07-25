@@ -1,66 +1,18 @@
 <div class="wrapper">
     <div class="contents">
-        <div class="add-poll">
+        <div class="add-poll "*ngIf="currentUser.role=='Government Official'">
             <input type="button" value="Create a New Poll" [routerLink]="['/addpoll']">
         </div>
-        <div class="polls-container">
+        <div class="polls-container" *ngIf="allPolls" >
 
-            <div class="poll-card">
-                <h3>Poll Title </h3>
-                <p>Total Votes:25</p>
-                <p>5 days left</p>
-                <input type="button" value="Contribute" [routerLink]="['1']">
+            <div class="poll-card" *ngFor="let poll of allPolls">
+                <h3>{{poll.poll.question}}</h3>
+                <!-- <p>Total Votes:{{poll.choicesArray.length}}</p> -->
+               
+                <input type="button" value="Contribute" [routerLink]="['/poll/'+poll.poll.id]">
             </div>
 
-            <div class="poll-card">
-                <h3>Poll Title </h3>
-                <p>Total Votes:25</p>
-                <p>5 days left</p>
-                <input type="button" value="Contribute" [routerLink]="['1']">
-            </div>
-
-            <div class="poll-card">
-                <h3>Poll Title </h3>
-                <p>Total Votes:25</p>
-                <p>5 days left</p>
-                <input type="button" value="Contribute" [routerLink]="['1']">
-            </div>
-
-            <div class="poll-card">
-                <h3>Poll Title </h3>
-                <p>Total Votes:25</p>
-                <p>5 days left</p>
-                <input type="button" value="Contribute" [routerLink]="['1']">
-            </div>
-
-
-            <div class="poll-card">
-                <h3>Poll Title </h3>
-                <p>Total Votes:25</p>
-                <p>5 days left</p>
-                <input type="button" value="Contribute" [routerLink]="['1']">
-            </div>
-
-            <div class="poll-card">
-                <h3>Poll Title </h3>
-                <p>Total Votes:25</p>
-                <p>5 days left</p>
-                <input type="button" value="Contribute" [routerLink]="['1']">
-            </div>
-
-            <div class="poll-card">
-                <h3>Poll Title </h3>
-                <p>Total Votes:25</p>
-                <p>5 days left</p>
-                <input type="button" value="Contribute" [routerLink]="['1']">
-            </div>
-
-            <div class="poll-card">
-                <h3>Poll Title </h3>
-                <p>Total Votes:25</p>
-                <p>5 days left</p>
-                <input type="button" value="Contribute" [routerLink]="['1']">
-            </div>
+        
         </div>
     </div>
 </div>

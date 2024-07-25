@@ -8,6 +8,7 @@ export interface IView {
     description: string,
     viewsummary: string,
     createdby: string,
+    creatername: string,
     createdat: string,
     isDeleted: number
 

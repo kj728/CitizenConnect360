@@ -1,81 +1,37 @@
 <div class="wrapper">
     <div class="contents">
 
-        <div class="add-view">
+        <div class="add-view" *ngIf="currentUser.role==='Citizen'">
             <input type="button" value="Create a New View" [routerLink]="['/addview']">
         </div>
 
 
-        <div class="display-views">
-            <div class="view-card">
-                <h3>Power Outages</h3>
+        <div class="display-views" >
+            <div class="view-card" *ngFor="let view of allViews; let i=index">
+                <h3>{{view.view.title}}</h3>
                 <div class="view-data">
-                    <p>By: Jane Wambui</p>
-                    <p>13/7/2024</p>
-                    <p>9:34 AM</p>
+                    <p>By: {{view.view.creatername}}</p>
+                    <p>{{view.view.createdat}}</p>
                 </div>
 
                 <div class="view-content">
                     <p>
-                        Habari gani?  The recent power outages have been very disruptive, especially for businesses.  Has the electricity company explained the cause of the outages and what they are doing to prevent them in the future?
+                      {{view.view.description}}
                     </p>
-                    <p>View Summary:</p>
-                    <p>200 Participants</p>
+                    <p *ngIf="view.view.viewsummary !== 'NO_SUMMARY'">View Summary:{{view.view.viewsummary}}</p>
+                    <p>Comments: {{view.commentsArray.length}}</p>
+
+                    
                 </div>
 
                 <div class="view-action">
-                    <input type="button" value="Join Discussion" [routerLink]="['1']">
+                    <input type="button" value="Join Discussion" [routerLink]="['/view/'+view.view.id]">
                 </div>
 
             </div>
-            <div class="view-card">
-                <h3>Power Outages</h3>
-                <div class="view-data">
-                    <p>By: Jane Wambui</p>
-                    <p>13/7/2024</p>
-                    <p>9:34 AM</p>
-                </div>
+           
 
-                <div class="view-content">
-                    <p>
-                        Habari gani?  The recent power outages have been very disruptive, especially for businesses.  Has the electricity company explained the cause of the outages and what they are doing to prevent them in the future?
-                    </p>
-                    <p>View Summary:</p>
-                    <p>200 Participants</p>
-                </div>
-
-                <div class="view-action">
-                    <input type="button" value="Join Discussion" [routerLink]="['1']">
-                </div>
-
-            </div>
-
-
-            <div class="view-card">
-                <h3>Power Outages</h3>
-                <div class="view-data">
-                    <p>By: Jane Wambui</p>
-                    <p>13/7/2024</p>
-                    <p>9:34 AM</p>
-                </div>
-
-                <div class="view-content">
-                    <p>
-                        Habari gani?  The recent power outages have been very disruptive, especially for businesses.  Has the electricity company explained the cause of the outages and what they are doing to prevent them in the future?
-                    </p>
-                    <p>View Summary:</p>
-                    <p>200 Participants</p>
-                </div>
-
-                <div class="view-action">
-                    <input type="button" value="Join Discussion" [routerLink]="['1']">
-                </div>
-
-            </div>
-
-      
-
-
+    
 
         </div>
 

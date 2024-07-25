@@ -13,7 +13,7 @@
             <a [routerLink]="['polls']">Polls</a>
             <a [routerLink]="['profile']">Profile</a>
             <!-- <a href="">Username</a> -->
-            <a [routerLink]="['admin']">Admin</a>
+            <a [routerLink]="['admin']" *ngIf="currentUser.role=='Admin'">Admin</a>
             <a *ngIf="!authService.showStatus(); " [routerLink]="['login']">Login</a>
             <a *ngIf="authService.showStatus(); " (click)="logoutUser()">Logout</a>
         </div>

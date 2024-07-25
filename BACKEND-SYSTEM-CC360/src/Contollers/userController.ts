@@ -36,6 +36,8 @@ export const addUser = async (req: UserRequest, res: Response) => {
         return res.status(500).json({ message: "Something went wrong " + error });
     }
 
+
+
 }
 
 export const getAllUsers: RequestHandler = async (req, res) => {
@@ -112,7 +114,7 @@ export const updateUser = async (req: Request<{ id: string }>, res: Response) =>
             // const hashedPassword = await bcyrpt.hash(password, 10);
 
             //update the user
-            (await dbInstance.exec("updateUser", { id, username, email, password, role ,status: user.status}))
+            (await dbInstance.exec("updateUser", { id, username, email, password, role, status: user.status }))
             //success message
             return res.status(200).json({ message: "User updated successfully" })
 
@@ -161,6 +163,11 @@ export const logInUser = async (req: Request, res: Response) => {
             if (user && user.id) {
                 // check if user is not deleted
                 if (user.isDeleted !== 1) {
+
+                    if (user.status !== 1) {
+                        // has no approval to use the website 
+                        return res.status(404).json({ message: "You are not approved to access the website" })
+                    }
                     // compare password
                     const isPassValid = await bcyrpt.compare(password, user.password)
 
@@ -214,7 +221,7 @@ export const updatePassword = async (req: Request<{ id: string }>, res: Response
                 //hash the  new password
                 const newHashedPassword = await bcyrpt.hash(password, 10);
                 //update the user
-                (await dbInstance.exec("updateUser", { id: user.id, username: user.username, email: user.email, password: newHashedPassword, role: user.role ,status: user.status  }))
+                (await dbInstance.exec("updateUser", { id: user.id, username: user.username, email: user.email, password: newHashedPassword, role: user.role, status: user.status }))
                 //success message
                 return res.status(200).json({ message: "User password updated successfully" })
 

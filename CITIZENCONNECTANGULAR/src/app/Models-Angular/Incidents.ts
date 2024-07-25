@@ -8,6 +8,7 @@ export interface IIncident {
     multimedia: string,
     incidentsummarry: string,
     createdby: string,
+    creatername: string,
     createdat: string,
     isDelted: number
 
@@ -18,11 +19,6 @@ export interface addIncident {
     description: string,
     location: string,
     multimedia: string,
-    incidentsummarry: string,
-    createdby: string,
-    createdat: string,
-    isDelted: number
-
 }
 
 export interface AddIncidentResponse{

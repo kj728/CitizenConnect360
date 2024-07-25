@@ -5,29 +5,29 @@ import { IUser } from "../../Models-Angular/User";
 export interface AuthInterface {
     id: string
 
-    allUsers: IUser[] //get all users
+    allUsers: IUser[] 
     allUsersError: string
     allUsersLoading: boolean
 
-    registerSuccessMessage: string;
-    registerErrorMessage: string;
-    registerLoading: boolean;
+    registerSuccessMessage: string,
+    registerErrorMessage: string,
+    registerLoading: boolean,
 
-    loginSuccessMessage: string;
-    loginErrorMessage: string;
+    loginSuccessMessage: string,
+    loginErrorMessage: string,
     loginLoading: boolean
 
-    updateSuccessMessage: string; 
-    updateErrorMessage: string;
-    updateLoading: boolean;
+    updateSuccessMessage: string, 
+    updateErrorMessage: string,
+    updateLoading: boolean,
 
-    deleteSuccessMessage: string; 
-    deleteErrorMessage: string;
-    deleteLoading: boolean;
+    deleteSuccessMessage: string, 
+    deleteErrorMessage: string,
+    deleteLoading: boolean,
 
-    approveSuccessMessage: string; //update user messages
-    approveErrorMessage: string;
-    approveLoading: boolean;
+    approveSuccessMessage: string, 
+    approveErrorMessage: string,
+    approveLoading: boolean,
 
 }
 
@@ -35,7 +35,7 @@ export const initialState: AuthInterface = {
 
     id: "",
 
-    allUsers: [],//get all users
+    allUsers: [],
     allUsersError: '',
     allUsersLoading: false,
 
@@ -56,7 +56,7 @@ export const initialState: AuthInterface = {
     deleteLoading: false,
 
 
-    approveSuccessMessage: '', //update user messages
+    approveSuccessMessage: '', 
     approveErrorMessage: '',
     approveLoading: false,
 }
@@ -65,7 +65,7 @@ export const authReducer = createReducer(
     initialState,
 
     // for register
-    on(AuthActions.register, (state,) => {
+    on(AuthActions.register, (state) => {
         return {
             ...state,
             registerSuccessMessage: '',

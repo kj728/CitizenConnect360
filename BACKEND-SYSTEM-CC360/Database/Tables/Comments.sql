@@ -4,7 +4,8 @@ CREATE Table comments
     comment VARCHAR(4096) NOT NULL,
     viewid VARCHAR(255) NOT NULL,
     createdby VARCHAR(255) NOT NULL,
-    createdat DATE NOT NULL,
+    creatername VARCHAR(255) NOT NULL,
+    createdat VARCHAR(255) NOT NULL,
     isDeleted INT DEFAULT 0,
     FOREIGN KEY (createdby) REFERENCES users(id),
     FOREIGN KEY (viewid) REFERENCES views(id)

@@ -26,6 +26,7 @@ export const addPoll = (req: PollRequest, res: Response) => {
 
     if (createdby) {
 
+
       //add the question to the database
       dbInstance.exec("addPoll", { id: pollid, question, startdate, enddate, createdby });
 
@@ -44,6 +45,7 @@ export const addPoll = (req: PollRequest, res: Response) => {
   } catch (error) {
     return res.status(500).json({ message: "Something went wrong " + error })
   }
+
 
 }
 

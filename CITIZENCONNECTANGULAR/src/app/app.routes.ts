@@ -27,16 +27,16 @@ export const routes: Routes = [
     { path: 'terms', component: TermsComponent },
     { path: 'forgotpassword', component: ForgotComponent },
     { path: 'resetpassword', component: ResetComponent },
-    { path: 'profile',  canActivate: [authGuard], component: ProfileComponent },
+    { path: 'profile', canActivate: [authGuard], component: ProfileComponent },
     { path: 'incidents', canActivate: [authGuard], component: IncidentsComponent },
     { path: 'addpoll', component: AddPollComponent },
     { path: 'addincident', component: AddIncidentComponent },
     { path: 'addview', component: AddViewComponent },
     { path: 'educate', canActivate: [authGuard], component: EducateComponent },
 
-    { path: 'admin',canActivate: [authGuard], component: AdminComponent },
+    { path: 'admin', canActivate: [authGuard], component: AdminComponent },
     {
-        path: 'user',children: [
+        path: 'user', children: [
             { path: ':id', component: SingleUserComponent }
 
         ]
@@ -45,9 +45,16 @@ export const routes: Routes = [
     {
         path: 'views', canActivate: [authGuard], children: [
             { path: '', component: ViewsComponent },
-            { path: ':id', component: SingleViewComponent },
         ]
     },
+
+    {
+        path: 'view', children: [
+            { path: ':id', component: SingleViewComponent }
+        ],
+    },
+
+
     {
         path: 'polls', canActivate: [authGuard], children: [
             { path: '', component: PollsComponent },
@@ -55,6 +62,14 @@ export const routes: Routes = [
 
         ]
     },
+
+
+    {
+        path: 'poll', children: [
+            { path: ':id', component: SinglePollComponent }
+        ],
+    },
+
 
     { path: '**', component: NotFoundComponent },
 

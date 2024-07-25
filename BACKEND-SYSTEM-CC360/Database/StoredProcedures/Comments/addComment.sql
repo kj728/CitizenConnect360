@@ -7,12 +7,13 @@ CREATE OR ALTER PROCEDURE addComment(
     @comment VARCHAR(4096),
     @viewid VARCHAR(255),
     @createdby VARCHAR(255),
-    @createdat DATE
+    @creatername VARCHAR(255),
+    @createdat VARCHAR(255)
 )
 AS
 BEGIN
     INSERT INTO comments
-        (id, comment, viewid, createdby, createdat)
+        (id, comment, viewid, createdby,creatername, createdat)
     VALUES
-        (@id, @comment, @viewid, @createdby, @createdat)
+        (@id, @comment, @viewid, @createdby,@creatername, @createdat)
 END

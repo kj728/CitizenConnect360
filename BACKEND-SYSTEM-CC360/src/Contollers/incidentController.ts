@@ -13,6 +13,7 @@ export const addIncident = async (req: IncidentRequest, res: Response) => {
         // get data from the payload
         const createdby = req.info?.sub
         const role = req.info?.role
+        const creatername = req.info?.username
 
         // crrate a new incident id
         const id = uid()
@@ -27,17 +28,37 @@ export const addIncident = async (req: IncidentRequest, res: Response) => {
         // destructuring user input
         const { title, description, location, multimedia } = req.body
 
-        const currentDate = new Date().toISOString().slice(0, -5);
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        const day = now.getDate();
+        let hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
 
 
-        console.log(createdby, role)
+        // Determine AM or PM
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+
+        // Convert hours from 24-hour format to 12-hour format
+        hours = hours % 12;
+        hours = hours ? hours : 12; // The hour '0' should be '12'
+
+        // Helper function to add leading zero if needed
+        const addLeadingZero = (num: number): string => (num < 10 ? `0${num}` : String(num));
+
+        const formattedDateTime = `${year}-${month}-${day} ${addLeadingZero(hours)}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)} ${ampm}`;
+        console.log(formattedDateTime);
 
 
 
+
+     
         // check if user exists
-        if (createdby && role === "Citizen") {
+        if (createdby&&creatername && role === "Citizen") {
+            
             // add the incident to the database
-            await dbInstance.exec("addIncident", { id, title, description, location, multimedia, incidentsummary: "NO_SUMMARY", createdby, createdat: currentDate })
+            await dbInstance.exec("addIncident", { id, title, description, location, multimedia, incidentsummary: "NO_SUMMARY", createdby,creatername, createdat: formattedDateTime })
 
             // success message
             return res.status(200).json({ message: "Incident created successfully" })
